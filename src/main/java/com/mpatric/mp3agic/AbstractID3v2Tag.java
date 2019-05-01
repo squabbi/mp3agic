@@ -60,6 +60,13 @@ public abstract class AbstractID3v2Tag implements ID3v2 {
 	public static final String ID_COMPILATION_OBSELETE = "TCP";
 	public static final String ID_GROUPING_OBSELETE = "TT1";
 
+	// New Frame ID definitions
+	public static final String ID_CONDUCTOR_REFINEMENT = "TPE3";
+	public static final String ID_SUBTITLE_DESCRIPTION_REFINEMENT = "TIT3";
+	public static final String ID_ALBUM_MOVIE_SHOW_TITLE = "TALB";
+	public static final String ID_LENGTH = "TLEN";
+
+
 	public static final byte PICTURETYPE_OTHER = 0x0;
 	public static final byte PICTURETYPE_32PXICON = 0x1;
 	public static final byte PICTURETYPE_OTHERICON = 0x2;
@@ -383,6 +390,70 @@ public abstract class AbstractID3v2Tag implements ID3v2 {
 	@Override
 	public boolean getObseleteFormat() {
 		return obseleteFormat;
+	}
+
+	@Override
+	public String getConductorRefinement() {
+		ID3v2TextFrameData frameData = extractTextFrameData(ID_CONDUCTOR_REFINEMENT);
+		if (frameData != null && frameData.getText() != null) return frameData.getText().toString();
+		return null;
+	}
+
+	@Override
+	public void setConductorRefinement(String conductor) {
+		if (conductor != null && conductor.length() > 0) {
+			invalidateDataLength();
+			ID3v2TextFrameData frameData = new ID3v2TextFrameData(useFrameUnsynchronisation(), new EncodedText(conductor));
+			addFrame(createFrame(ID_CONDUCTOR_REFINEMENT, frameData.toBytes()), true);
+		}
+	}
+
+	@Override
+	public String getSubtitleRefinement() {
+		ID3v2TextFrameData frameData = extractTextFrameData(ID_SUBTITLE_DESCRIPTION_REFINEMENT);
+		if (frameData != null && frameData.getText() != null) return frameData.getText().toString();
+		return null;
+	}
+
+	@Override
+	public void setSubtitleRefinement(String subtitle) {
+		if (subtitle != null && subtitle.length() > 0) {
+			invalidateDataLength();
+			ID3v2TextFrameData frameData = new ID3v2TextFrameData(useFrameUnsynchronisation(), new EncodedText(subtitle));
+			addFrame(createFrame(ID_SUBTITLE_DESCRIPTION_REFINEMENT, frameData.toBytes()), true);
+		}
+	}
+
+	@Override
+	public String getAblumMovieShowTitle() {
+		ID3v2TextFrameData frameData = extractTextFrameData(ID_ALBUM_MOVIE_SHOW_TITLE);
+		if (frameData != null && frameData.getText() != null) return frameData.getText().toString();
+		return null;
+	}
+
+	@Override
+	public void setAlbumMovieShowTitle(String title) {
+		if (title != null && title.length() > 0) {
+			invalidateDataLength();
+			ID3v2TextFrameData frameData = new ID3v2TextFrameData(useFrameUnsynchronisation(), new EncodedText(title));
+			addFrame(createFrame(ID_ALBUM_MOVIE_SHOW_TITLE, frameData.toBytes()), true);
+		}
+	}
+
+	@Override
+	public String getEncLength() {
+		ID3v2TextFrameData frameData = extractTextFrameData(ID_LENGTH);
+		if (frameData != null && frameData.getText() != null) return frameData.getText().toString();
+		return null;
+	}
+
+	@Override
+	public void setEncLength(String length) {
+		if (length != null && length.length() > 0) {
+			invalidateDataLength();
+			ID3v2TextFrameData frameData = new ID3v2TextFrameData(useFrameUnsynchronisation(), new EncodedText(length));
+			addFrame(createFrame(ID_LENGTH, frameData.toBytes()), true);
+		}
 	}
 
 	@Override

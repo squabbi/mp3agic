@@ -5,6 +5,26 @@ import java.util.Map;
 
 public interface ID3v2 extends ID3v1 {
 
+	/*
+	Custom tags.
+	 */
+
+	// TPE3 - Conductor/performer refinement
+	String getConductorRefinement();
+	void setConductorRefinement(String conductor);
+
+	// TIT3 - Subtitle/description refinement
+	String getSubtitleRefinement();
+	void setSubtitleRefinement(String subtitle);
+
+	// TALB - Album, movie, show title
+	String getAblumMovieShowTitle();
+	void setAlbumMovieShowTitle(String title);
+
+	// TLEN - Length
+	String getEncLength();
+	void setEncLength(String length);
+
 	boolean getPadding();
 
 	void setPadding(boolean padding);

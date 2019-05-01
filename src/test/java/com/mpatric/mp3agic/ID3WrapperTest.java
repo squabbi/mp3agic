@@ -1097,6 +1097,46 @@ public class ID3WrapperTest {
 		}
 
 		@Override
+		public String getConductorRefinement() {
+			return null;
+		}
+
+		@Override
+		public void setConductorRefinement(String conductor) {
+
+		}
+
+		@Override
+		public String getSubtitleRefinement() {
+			return null;
+		}
+
+		@Override
+		public void setSubtitleRefinement(String subtitle) {
+
+		}
+
+		@Override
+		public String getAblumMovieShowTitle() {
+			return null;
+		}
+
+		@Override
+		public void setAlbumMovieShowTitle(String title) {
+
+		}
+
+		@Override
+		public String getEncLength() {
+			return null;
+		}
+
+		@Override
+		public void setEncLength(String length) {
+
+		}
+
+		@Override
 		public boolean hasFooter() {
 			return false;
 		}
